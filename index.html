@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>PostcodeAnywhere</title>
+	<script src="./jquery-1.11.2.min.js"></script>
+	<script src="./underscore-min.js"></script>
+	<script src="postcode-anywhere.js"></script>
+	<script type="application/javascript">
+
+		 window.onload = function(e){
+
+			 $('.search-postcode').postcodes({
+				 api_key: 'AP21-JB73-CH52-UH45',
+				 input_class: 'base-input',
+				 input_label: 'Postcode',
+				 button_class: 'btn',
+				 button_label: 'Find Address',
+				 dropdown_class: 'base-select bordered',
+				 onGetAddress: function(address){
+					 //do something
+				 },
+				 output_fields: {
+					 Line1       : '.js-address1',
+					 Line2       : '.js-address2',
+					 Line3       : '.js-address3',
+					 City        : '.js-city',
+					 PostalCode  : '.js-postcode'
+				 }
+			 });
+
+		 }
+
+	</script>
+</head>
+<body>
+	<div class='search-postcode'></div>
+	<form action="">
+		<input type="text" class="js-address1">
+		<input type="text" class="js-address2">
+		<input type="text" class="js-address3">
+		<input type="text" class="js-city">
+		<input type="text" class="js-postcode">
+		<input type="submit" value="Submit">
+	</form>
+</body>
+</html>

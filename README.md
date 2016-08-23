@@ -20,6 +20,9 @@ HTML:
 ```
 ...
 <div class='search-postcode'></div>
+<form>
+    //output fields
+</form>
 ...
 
 ```

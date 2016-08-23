@@ -110,19 +110,21 @@
 				style: 'display:none',
 				class: 'idpc_error_message'
 			});
-
-			this.el.append(this.input);
-			this.el.append(this.button);
-			this.el.append(this.dropdown);
-			this.el.append(this.error_container);
+			
+			this.el.append(this.input)
+				.append(this.button)
+				.append(this.dropdown)
+				.append(this.error_container);
 
 			return this;
 		},
 		initElemsListeners: function(){
+
 			this.input.on('input' , _.bind(this.setPostCode, this) );
 			this.input.on('change' , _.bind(this.setPostCode, this) );
 			this.button.on('click',  _.bind(this.makeRequestWithPostcode, this) );
 			this.dropdown.on('change', _.bind(this.makeRequestByPostcodeId, this) );
+
 			return this;
 		},
 		setPostCode: function(){
@@ -151,7 +153,7 @@
 		postcodeResponseProcessor: function(data){
 
 			if( this.checkPostCodeRespData(data.Items) ) {
-				this.displayError();
+				return this.displayError();
 			}
 
 			this.initSelect(data.Items);
@@ -176,6 +178,11 @@
 
 			if(!items.length){
 				this.setError("We can't find addresses by this post code!");
+				return true;
+			}
+
+			if(items.length && items[0].Error){
+				this.setError(items[0].Resolution);
 				return true;
 			}
 
